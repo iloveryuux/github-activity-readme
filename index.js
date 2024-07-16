@@ -28,6 +28,7 @@ const capitalize = (str) => str.slice(0, 1).toUpperCase() + str.slice(1);
  * @returns {String}
  */
 const toUrlFormat = (item) => {
+  console.log(item)
   if (typeof item !== "object") {
     return `[${item}](https://github.com/${item})`;
   }

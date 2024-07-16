@@ -20407,6 +20407,7 @@ const capitalize = (str) => str.slice(0, 1).toUpperCase() + str.slice(1);
  * @returns {String}
  */
 const toUrlFormat = (item) => {
+  console.log(item)
   if (typeof item !== "object") {
     return `[${item}](https://github.com/${item})`;
   }
@@ -20516,19 +20517,11 @@ const serializers = {
     )}`;
   },
   IssuesEvent: (item) => {
-    let emoji = "";
-
-    switch (item.payload.action) {
-      case "opened":
-        emoji = "❗";
-        break;
-      case "reopened":
-        emoji = "🔓";
-        break;
-      case "closed":
-        emoji = "🔒";
-        break;
-    }
+    const emoji = {
+      opened: "❗",
+      reopened: "🔓",
+      closed: "🔒",
+    }[item.payload.action]
 
     return `${emoji} ${capitalize(item.payload.action)} issue ${toUrlFormat(
       item,
