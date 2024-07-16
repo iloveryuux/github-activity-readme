@@ -137,19 +137,11 @@ const serializers = {
     )}`;
   },
   IssuesEvent: (item) => {
-    let emoji = "";
-
-    switch (item.payload.action) {
-      case "opened":
-        emoji = "❗";
-        break;
-      case "reopened":
-        emoji = "🔓";
-        break;
-      case "closed":
-        emoji = "🔒";
-        break;
-    }
+    const emoji = {
+      opened: "❗",
+      reopened: "🔓",
+      closed: "🔒",
+    }[item.payload.action]
 
     return `${emoji} ${capitalize(item.payload.action)} issue ${toUrlFormat(
       item,
